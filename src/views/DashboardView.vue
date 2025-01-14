@@ -6,14 +6,20 @@ const tableConfig: Partial<DataTableProps> = {
     paginator: true,
     rows: 2,
     resizableColumns: true,
-    columnResizeMode: "fit",
+    columnResizeMode: "expand",
     scrollable: true,
     scrollHeight: "400px",
 };
 const columns = [
-    { field: "id", header: "ID" },
+    { field: "id", header: "ID", frozen: true },
     { field: "name", header: "Name" },
-    { field: "email", header: "Email" },
+    { field: "data 1", header: "Data 1" },
+    { field: "data 2", header: "Data 2" },
+    { field: "data 3", header: "Data 3" },
+    { field: "data 4", header: "Data 4" },
+    { field: "data 5", header: "Data 5" },
+    { field: "data 6", header: "Data 6" },
+    { field: "email", header: "Email" }
 ];
 const lines = [
     { id: 1, name: "John Doe", email: "john.doe@example.com" },

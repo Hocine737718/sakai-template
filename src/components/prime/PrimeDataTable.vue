@@ -1,6 +1,10 @@
 <template>
     <DataTable :value="filteredLines" v-bind="configuration" class="p-datatable-sm">
-        <Column v-for="col in columns" :key="col.field" :field="col.field" :header="col.header">
+        <Column v-for="col in columns" :key="col.field" :header="col.header" :frozen="col.frozen ?? false"
+            header-style="min-width:12rem;">
+            <template #body="slotsProps">
+                <span>{{ slotsProps.data[col.field] }}</span>
+            </template>
         </Column>
     </DataTable>
 </template>
@@ -18,6 +22,7 @@ export interface DataTableProps {
 export interface ColumnProps {
     field: string; // The key for the line data
     header: string; // The column header text
+    frozen?: boolean;
 }
 const props = defineProps<{
     configuration?: Partial<DataTableProps>;
@@ -37,8 +42,13 @@ const filteredLines = computed(() => {
 });
 </script>
 
-<style scoped>
+<style>
 .p-datatable-sm {
-    font-size: 0.9rem;
+    font-size: 1rem;
+}
+
+body[dir="rtl"] .p-frozen-column {
+    left: auto !important;
+    right: 0 !important;
 }
 </style>
